@@ -20,9 +20,9 @@ const App = () => {
   return (
     <>
       <h1>Hello...goblins are coming...</h1>
-      <p>
+      <main>
         {goblinsToDisplay}
-      </p>
+      </main>
     </>
   );
 };
