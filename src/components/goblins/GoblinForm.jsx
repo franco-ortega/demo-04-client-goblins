@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { insertGoblin } from '../../services/insertGoblin';
 import { useValue } from '../../hooks/useValue';
+import DecrementButton from '../buttons/DecrementButton';
 
 const GoblinForm = ({ setGoblins }) => {
   const startingHitPoints  = 5;
@@ -57,11 +58,11 @@ const GoblinForm = ({ setGoblins }) => {
         <label htmlFor="hit points">Hit Points:
           <p id="hit points" type="text" value={hitPoints}>{hitPoints}</p>
           
-          <button
-            type="button"
-            disabled={hitPoints === startingHitPoints}
-            onClick={onMinusHitPoints}
-          >-</button>
+          <DecrementButton
+            currentValue={hitPoints}
+            startingValue={startingHitPoints}
+            clickHandler={onMinusHitPoints}
+          />
 
           <button
             type="button"
@@ -73,11 +74,11 @@ const GoblinForm = ({ setGoblins }) => {
         <label htmlFor="armor class">Armor Class:
           <p id="armor class" type="text" value={armorClass}>{armorClass}</p>
 
-          <button
-            type="button"
-            disabled={armorClass === startingArmorClass}
-            onClick={onDecreaseArmorClass}
-          >-</button>
+          <DecrementButton
+            currentValue={armorClass}
+            startingValue={startingArmorClass}
+            clickHandler={onDecreaseArmorClass}
+          />
 
           <button
             type="button"
