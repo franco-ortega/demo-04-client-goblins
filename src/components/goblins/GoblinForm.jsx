@@ -55,7 +55,8 @@ const GoblinForm = ({ setGoblins }) => {
       <form onSubmit={onFormSubmit}>
 
         <label htmlFor="name">Name:
-          <input id="name" type="text" onChange={onNameChange} />
+          <input id="name" type="text" placeholder="Name"
+            onChange={onNameChange} />
           <div>
           Points to spend: {pointsToSpend}
             <br />
