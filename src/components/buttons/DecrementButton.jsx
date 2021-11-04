@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const decrementButton = ({ currentValue, startingValue, clickHandler }) => {
+const DecrementButton = ({ currentValue, startingValue, clickHandler }) => {
   return (
     <button
       type="button"
@@ -11,10 +11,10 @@ const decrementButton = ({ currentValue, startingValue, clickHandler }) => {
   );
 };
 
-decrementButton.propTypes = {
+DecrementButton.propTypes = {
   currentValue: PropTypes.number.isRequired,
   startingValue: PropTypes.number.isRequired,
   clickHandler: PropTypes.func.isRequired
 };
 
-export default decrementButton;
+export default DecrementButton;
