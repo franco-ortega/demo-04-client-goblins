@@ -11,13 +11,13 @@ const GoblinForm = ({ setGoblins }) => {
   const [pointsToSpend, setPointsToSpend] = useState(startingPointsToSpend);
 
   const {
-    value: hitPoints,
+    currentValue: hitPoints,
     increaseValue: onAddHitPoints,
     decreaseValue: onMinusHitPoints
   } = useValue(startingHitPoints, setPointsToSpend);
   
   const {
-    value: armorClass,
+    currentValue: armorClass,
     increaseValue: onIncreaseArmorClass,
     decreaseValue: onDecreaseArmorClass
   } = useValue(startingArmorClass, setPointsToSpend);
