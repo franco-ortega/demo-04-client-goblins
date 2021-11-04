@@ -20,6 +20,7 @@ form {
   flex-direction: column;
   align-items: center;
   gap: 1vw;
+  text-align: center;
 }
 
 label + label {
@@ -59,4 +60,8 @@ label p {
 
 label + button {
   padding: 0 0.25rem;
+}
+
+div {
+  margin-top: 0.5rem;
 }

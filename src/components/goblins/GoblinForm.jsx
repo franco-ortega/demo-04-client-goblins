@@ -6,6 +6,7 @@ const GoblinForm = ({ setGoblins }) => {
   const [name, setName] = useState('');
   const [hitPoints, setHitPoints] = useState(5);
   const [armorClass, setArmorClass] = useState(10);
+  const [pointsToSpend, setPointsToSpend] = useState(5);
 
   const onNameChange = ({ target }) => {
     setName(target.value);
@@ -13,12 +14,11 @@ const GoblinForm = ({ setGoblins }) => {
 
   const onFormSubmit = async(e) => {
     e.preventDefault();
-    console.log('form clicked');
 
     await insertGoblin({
       goblinName: name,
-      hitPoints: 10,
-      armorClass: 15,
+      hitPoints,
+      armorClass,
       items: ['sample']
     })
       .then(res => {
@@ -27,49 +27,70 @@ const GoblinForm = ({ setGoblins }) => {
   };
 
   const onAddHitPoints = () => {
-    console.log('plus clicked');
     setHitPoints(prevState => prevState + 1);
+    setPointsToSpend(prevState => prevState - 1);
   };
 
   const onMinusHitPoints = () => {
-    console.log('minus clicked');
     setHitPoints(prevState => prevState - 1);
+    setPointsToSpend(prevState => prevState + 1);
   };
 
   const onIncreaseArmorClass = () => {
-    console.log('increase clicked');
     setArmorClass(prevState => prevState + 1);
+    setPointsToSpend(prevState => prevState - 1);
   };
 
   const onDecreaseArmorClass = () => {
-    console.log('decrease clicked');
     setArmorClass(prevState => prevState - 1);
+    setPointsToSpend(prevState => prevState + 1);
   };
 
   return (
     <div>
       <form onSubmit={onFormSubmit}>
+
         <label htmlFor="name">Name:
           <input id="name" type="text" onChange={onNameChange} />
+          <div>
+          Points to spend: {pointsToSpend}
+            <br />
+          (use for HP and/or AC)
+          </div>
         </label>
+
         <label htmlFor="hit points">Hit Points:
-          <p
-            id="hit points"
-            type="text"
-            value={hitPoints}
-          >{hitPoints} </p>
-          <button type="button" onClick={onAddHitPoints}>+</button>
-          <button type="button" onClick={onMinusHitPoints}>-</button>
+          <p id="hit points" type="text" value={hitPoints}>{hitPoints}</p>
+          
+          <button
+            type="button"
+            disabled={hitPoints === 5}
+            onClick={onMinusHitPoints}
+          >-</button>
+
+          <button
+            type="button"
+            disabled={pointsToSpend === 0}
+            onClick={onAddHitPoints}
+          >+</button>
         </label>
+
         <label htmlFor="armor class">Armor Class:
-          <p
-            id="armor class"
-            type="text"
-            value={armorClass}
-          >{armorClass} </p>
-          <button type="button" onClick={onIncreaseArmorClass}>+</button>
-          <button type="button" onClick={onDecreaseArmorClass}>-</button>
+          <p id="armor class" type="text" value={armorClass}>{armorClass}</p>
+
+          <button
+            type="button"
+            disabled={armorClass === 10}
+            onClick={onDecreaseArmorClass}
+          >-</button>
+
+          <button
+            type="button"
+            disabled={pointsToSpend === 0}
+            onClick={onIncreaseArmorClass}
+          >+</button>
         </label>
+
         {/* <label htmlFor="goblin">Items:
           <input id="goblin" type="text" />
         </label> */}
