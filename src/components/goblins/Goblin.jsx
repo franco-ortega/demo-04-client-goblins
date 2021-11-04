@@ -11,14 +11,14 @@ const Goblin = ({ goblin }) => {
   ));
 
   return (
-    <>
+    <section>
       <br />
       <h2>{goblin.goblinName}</h2>
       <p>Hit Points: {goblin.hitPoints}</p>
       <p>Armor Class: {goblin.armorClass}</p>
       <p>Items: {items}</p>
       <br />
-    </>
+    </section>
   );
 };
 

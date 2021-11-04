@@ -20,8 +20,8 @@ const App = () => {
 
   return (
     <>
-      <GoblinForm setGoblins={setGoblins} />
       <h1>Hello...goblins are coming...</h1>
+      <GoblinForm setGoblins={setGoblins} />
       <main>
         {goblinsToDisplay}
       </main>
