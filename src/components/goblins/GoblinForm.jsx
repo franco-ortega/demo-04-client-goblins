@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { insertGoblin } from '../../services/insertGoblin';
+import { useValue } from '../../hooks/useValue';
 
 const GoblinForm = ({ setGoblins }) => {
-  const startingHitPoints  = 7;
+  const startingHitPoints  = 5;
   const startingArmorClass  = 10;
   const startingPointsToSpend = 5;
-
   const [name, setName] = useState('');
-  const [hitPoints, setHitPoints] = useState(startingHitPoints);
-  const [armorClass, setArmorClass] = useState(startingArmorClass);
   const [pointsToSpend, setPointsToSpend] = useState(startingPointsToSpend);
+
+  const {
+    value: hitPoints,
+    increaseValue: onAddHitPoints,
+    decreaseValue: onMinusHitPoints
+  } = useValue(startingHitPoints, setPointsToSpend);
+  
+  const {
+    value: armorClass,
+    increaseValue: onIncreaseArmorClass,
+    decreaseValue: onDecreaseArmorClass
+  } = useValue(startingArmorClass, setPointsToSpend);
 
   const onNameChange = ({ target }) => {
     setName(target.value);
@@ -28,26 +38,6 @@ const GoblinForm = ({ setGoblins }) => {
       .then(res => {
         setGoblins(prevState => [...prevState, res]);
       });
-  };
-
-  const onAddHitPoints = () => {
-    setHitPoints(prevState => prevState + 1);
-    setPointsToSpend(prevState => prevState - 1);
-  };
-
-  const onMinusHitPoints = () => {
-    setHitPoints(prevState => prevState - 1);
-    setPointsToSpend(prevState => prevState + 1);
-  };
-
-  const onIncreaseArmorClass = () => {
-    setArmorClass(prevState => prevState + 1);
-    setPointsToSpend(prevState => prevState - 1);
-  };
-
-  const onDecreaseArmorClass = () => {
-    setArmorClass(prevState => prevState - 1);
-    setPointsToSpend(prevState => prevState + 1);
   };
 
   return (
@@ -111,3 +101,4 @@ GoblinForm.propTypes = {
 };
 
 export default GoblinForm;
+
