@@ -20,8 +20,6 @@ const GoblinForm = ({ setGoblins }) => {
       items: ['sample']
     })
       .then(res => {
-        console.log(res);
-        // setGoblins(prevState => prevState);
         setGoblins(prevState => [...prevState, res]);
       });
 
@@ -29,18 +27,18 @@ const GoblinForm = ({ setGoblins }) => {
 
   return (
     <div>
-      <form action="" onSubmit={onFormSubmit}>
-        <label htmlFor="">Name:
-          <input type="text" onChange={onNameChange} />
+      <form onSubmit={onFormSubmit}>
+        <label htmlFor="goblin">Name:
+          <input id="goblin" type="text" onChange={onNameChange} />
         </label>
-        {/* <label htmlFor="">HP:
-          <input type="text" />
+        <label htmlFor="goblin">HP:
+          <input id="goblin" type="text" />
         </label>
-        <label htmlFor="">AC:
-          <input type="text" />
+        <label htmlFor="goblin">AC:
+          <input id="goblin" type="text" />
         </label>
-        <label htmlFor="">Items:
-          <input type="text" />
+        {/* <label htmlFor="goblin">Items:
+          <input id="goblin" type="text" />
         </label> */}
         <button>Submit</button>
       </form>
