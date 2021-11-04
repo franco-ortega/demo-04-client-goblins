@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { insertGoblin } from '../../services/insertGoblin';
 
 const GoblinForm = ({ setGoblins }) => {
+  const startingHitPoints  = 7;
+  const startingArmorClass  = 10;
+  const startingPointsToSpend = 5;
+
   const [name, setName] = useState('');
-  const [hitPoints, setHitPoints] = useState(5);
-  const [armorClass, setArmorClass] = useState(10);
-  const [pointsToSpend, setPointsToSpend] = useState(5);
+  const [hitPoints, setHitPoints] = useState(startingHitPoints);
+  const [armorClass, setArmorClass] = useState(startingArmorClass);
+  const [pointsToSpend, setPointsToSpend] = useState(startingPointsToSpend);
 
   const onNameChange = ({ target }) => {
     setName(target.value);
@@ -64,13 +68,13 @@ const GoblinForm = ({ setGoblins }) => {
           
           <button
             type="button"
-            disabled={hitPoints === 5}
+            disabled={hitPoints === startingHitPoints}
             onClick={onMinusHitPoints}
           >-</button>
 
           <button
             type="button"
-            disabled={pointsToSpend === 0}
+            disabled={!pointsToSpend}
             onClick={onAddHitPoints}
           >+</button>
         </label>
@@ -80,13 +84,13 @@ const GoblinForm = ({ setGoblins }) => {
 
           <button
             type="button"
-            disabled={armorClass === 10}
+            disabled={armorClass === startingArmorClass}
             onClick={onDecreaseArmorClass}
           >-</button>
 
           <button
             type="button"
-            disabled={pointsToSpend === 0}
+            disabled={!pointsToSpend}
             onClick={onIncreaseArmorClass}
           >+</button>
         </label>
