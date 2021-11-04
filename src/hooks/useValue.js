@@ -1,20 +1,20 @@
 import { useState } from 'react';
 
 export const useValue = (startingValue, setRemainingAvailable) => {
-  const [value, setValue] = useState(startingValue);
+  const [currentValue, setCurrentValue] = useState(startingValue);
 
   const increaseValue = () => {
-    setValue(prevState => prevState + 1);
+    setCurrentValue(prevState => prevState + 1);
     setRemainingAvailable(prevState => prevState - 1);
   };
 
   const decreaseValue = () => {
-    setValue(prevState => prevState - 1);
+    setCurrentValue(prevState => prevState - 1);
     setRemainingAvailable(prevState => prevState + 1);
   };
 
   return {
-    value,
+    currentValue,
     increaseValue,
     decreaseValue
   };
