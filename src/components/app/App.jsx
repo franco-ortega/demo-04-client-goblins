@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { findGoblins } from '../../services/findGoblins';
 import Goblin from '../goblins/Goblin';
+import GoblinForm from '../goblins/GoblinForm';
 import './App.css';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
 
   return (
     <>
+      <GoblinForm setGoblins={setGoblins} />
       <h1>Hello...goblins are coming...</h1>
       <main>
         {goblinsToDisplay}
