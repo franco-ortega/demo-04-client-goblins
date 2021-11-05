@@ -15,6 +15,7 @@ export const useValue = (startingValue, setRemainingAvailable) => {
 
   return {
     currentValue,
+    setCurrentValue,
     increaseValue,
     decreaseValue
   };

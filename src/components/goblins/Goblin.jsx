@@ -12,12 +12,10 @@ const Goblin = ({ goblin }) => {
 
   return (
     <section>
-      <br />
       <h2>{goblin.goblinName}</h2>
-      <p>Hit Points: {goblin.hitPoints}</p>
-      <p>Armor Class: {goblin.armorClass}</p>
-      <p>Items: {items}</p>
-      <br />
+      <p><span>Hit Points:</span> {goblin.hitPoints}</p>
+      <p><span>Armor Class:</span> {goblin.armorClass}</p>
+      <p><span>Items:</span> {items.length ? items : 'none'}</p>
     </section>
   );
 };
