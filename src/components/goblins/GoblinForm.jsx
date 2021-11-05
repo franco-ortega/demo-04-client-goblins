@@ -55,56 +55,53 @@ const GoblinForm = ({ setGoblins }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onFormSubmit}>
-
-        <label htmlFor="name">Name:
-          <input id="name" type="text" placeholder="Name"
-            required
-            value={name}
-            onChange={onNameChange} />
-          <div>
+    <form onSubmit={onFormSubmit}>
+      <h3>Create a goblin</h3>
+      <label htmlFor="name">Name:
+        <input id="name" type="text" placeholder="Name"
+          required
+          value={name}
+          onChange={onNameChange} />
+        <div>
           Points to spend: {pointsToSpend}
-            <br />
+          <br />
           (use for HP and/or AC)
-          </div>
-        </label>
+        </div>
+      </label>
 
-        <label htmlFor="hit points">Hit Points:
-          <p id="hit points" type="text" value={hitPoints}>{hitPoints}</p>
-          <DecrementButton
-            currentValue={hitPoints}
-            startingValue={startingHitPoints}
-            clickHandler={onMinusHitPoints}
-          />
-          <IncrementButton
-            notDisabled={pointsToSpend}
-            clickHandler={onAddHitPoints}
-          />
-        </label>
+      <label htmlFor="hit points">Hit Points:
+        <p id="hit points" type="text" value={hitPoints}>{hitPoints}</p>
+        <DecrementButton
+          currentValue={hitPoints}
+          startingValue={startingHitPoints}
+          clickHandler={onMinusHitPoints}
+        />
+        <IncrementButton
+          notDisabled={pointsToSpend}
+          clickHandler={onAddHitPoints}
+        />
+      </label>
 
-        <label htmlFor="armor class">Armor Class:
-          <p id="armor class" type="text" value={armorClass}>{armorClass}</p>
-          <DecrementButton
-            currentValue={armorClass}
-            startingValue={startingArmorClass}
-            clickHandler={onDecreaseArmorClass}
-          />
-          <IncrementButton
-            notDisabled={pointsToSpend}
-            clickHandler={onIncreaseArmorClass}
-          />
-        </label>
+      <label htmlFor="armor class">Armor Class:
+        <p id="armor class" type="text" value={armorClass}>{armorClass}</p>
+        <DecrementButton
+          currentValue={armorClass}
+          startingValue={startingArmorClass}
+          clickHandler={onDecreaseArmorClass}
+        />
+        <IncrementButton
+          notDisabled={pointsToSpend}
+          clickHandler={onIncreaseArmorClass}
+        />
+      </label>
 
-        <label htmlFor="goblin">Items: <br /> (separate items by comma) <br />
-          <input id="goblin" type="text" placeholder="Items"
-            value={items}
-            onChange={onItemsChange} />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-      
-    </div>
+      <label htmlFor="goblin">Items: <br /> (separate items by comma) <br />
+        <input id="goblin" type="text" placeholder="Items"
+          value={items}
+          onChange={onItemsChange} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
