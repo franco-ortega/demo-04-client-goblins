@@ -11,6 +11,7 @@ const GoblinForm = ({ setGoblins }) => {
   const startingPointsToSpend = 5;
   const [name, setName] = useState('');
   const [pointsToSpend, setPointsToSpend] = useState(startingPointsToSpend);
+  const [items, setItems] = useState([]);
 
   const {
     currentValue: hitPoints,
@@ -28,6 +29,10 @@ const GoblinForm = ({ setGoblins }) => {
     setName(target.value);
   };
 
+  const onItemsChange = ({ target }) => {
+    setItems(target.value.split(','));
+  };
+
   const onFormSubmit = async(e) => {
     e.preventDefault();
 
@@ -35,7 +40,7 @@ const GoblinForm = ({ setGoblins }) => {
       goblinName: name,
       hitPoints,
       armorClass,
-      items: ['sample']
+      items
     })
       .then(res => {
         setGoblins(prevState => [...prevState, res]);
@@ -82,9 +87,10 @@ const GoblinForm = ({ setGoblins }) => {
           />
         </label>
 
-        {/* <label htmlFor="goblin">Items:
-          <input id="goblin" type="text" />
-        </label> */}
+        <label htmlFor="goblin">Items: <br /> (separate items by comma) <br />
+          <input id="goblin" type="text" placeholder="Items"
+            onChange={onItemsChange} />
+        </label>
         <button type="submit">Submit</button>
       </form>
       
