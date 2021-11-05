@@ -16,7 +16,7 @@ const Goblin = ({ goblin }) => {
       <h2>{goblin.goblinName}</h2>
       <p>Hit Points: {goblin.hitPoints}</p>
       <p>Armor Class: {goblin.armorClass}</p>
-      <p>Items: {items}</p>
+      <p>Items: {items.length ? items : 'none'}</p>
       <br />
     </section>
   );
