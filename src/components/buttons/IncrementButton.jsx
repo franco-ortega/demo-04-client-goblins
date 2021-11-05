@@ -12,7 +12,7 @@ const Increment = ({ notDisabled, clickHandler }) => {
 };
 
 Increment.propTypes = {
-  notDisabled: PropTypes.bool.isRequired,
+  notDisabled: PropTypes.number.isRequired,
   clickHandler: PropTypes.func.isRequired
 };
 
