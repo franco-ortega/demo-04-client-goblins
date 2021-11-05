@@ -3,3 +3,65 @@
   margin: 0;
   padding: 0;
 }
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+form {
+  border: thin solid black;
+  float: left;
+  margin: 1vw;
+  margin-right: 2vw;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vw;
+  text-align: center;
+}
+
+label + label {
+  border: thin solid black;
+  width: 100%;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+label + label input {
+  width: 4vw;
+}
+
+input {
+  margin-left: 1vw;
+  /* text-align: center; */
+}
+
+label > button {
+  min-width: fit-content;
+  width: 1rem;
+  max-width: 4vw;
+  margin: 0 0.25rem;
+  /* padding: 0 0.25rem; */
+}
+
+label p {
+  /* text-align: center; */
+  /* text-decoration: underline; */
+  margin: 0.25rem;
+
+  /* min-width: fit-content; */
+  /* width: 4vw; */
+  /* max-width: 4vw; */
+  /* margin-left: 0.5rem; */
+}
+
+label + button {
+  padding: 0 0.25rem;
+}
+
+div {
+  margin-top: 0.5rem;
+}
