@@ -15,12 +15,14 @@ const GoblinForm = ({ setGoblins }) => {
 
   const {
     currentValue: hitPoints,
+    setCurrentValue: setHitpoints,
     increaseValue: onAddHitPoints,
     decreaseValue: onMinusHitPoints
   } = useValue(startingHitPoints, setPointsToSpend);
   
   const {
     currentValue: armorClass,
+    setCurrentValue: setArmorClass,
     increaseValue: onIncreaseArmorClass,
     decreaseValue: onDecreaseArmorClass
   } = useValue(startingArmorClass, setPointsToSpend);
@@ -45,6 +47,11 @@ const GoblinForm = ({ setGoblins }) => {
       .then(res => {
         setGoblins(prevState => [...prevState, res]);
       });
+
+    setName('');
+    setItems([]);
+    setHitpoints(startingHitPoints);
+    setArmorClass(startingArmorClass);
   };
 
   return (
@@ -53,6 +60,8 @@ const GoblinForm = ({ setGoblins }) => {
 
         <label htmlFor="name">Name:
           <input id="name" type="text" placeholder="Name"
+            required
+            value={name}
             onChange={onNameChange} />
           <div>
           Points to spend: {pointsToSpend}
@@ -89,6 +98,7 @@ const GoblinForm = ({ setGoblins }) => {
 
         <label htmlFor="goblin">Items: <br /> (separate items by comma) <br />
           <input id="goblin" type="text" placeholder="Items"
+            value={items}
             onChange={onItemsChange} />
         </label>
         <button type="submit">Submit</button>
