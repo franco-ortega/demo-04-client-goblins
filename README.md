@@ -1,6 +1,8 @@
-# Goblins
+# Goblin Den
 
 A full stack app where users create goblins with names, hit points, armor class, and a customized list of items. The hit points and armor class can be increased by spending points from a shared pool. The goblins are stored in a database.
+
+Visit the live site here: [Goblin Den](https://goblins.netlify.app/)
 
 ---
 
