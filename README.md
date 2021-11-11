@@ -33,9 +33,9 @@ If you would like to try out this project locally, the first steps will be to cl
 
 1. Install dependencies <code>npm i</code>
 
-1. Set up a server-side .env file with the variable <code>LOCALHOST_URL</code> pointing to your localhost database. This line of code might look something like this in your .env file: <code>LOCALHOST_URL=postgres://postgres:password@localhost:5432/postgres</code>
+1. Create a server-side <code>.env</code> file with the variable <code>LOCALHOST_URL</code> pointing to your localhost database. This line of code might look something like this in your .env file: <code>LOCALHOST_URL=postgres://postgres:password@localhost:5432/postgres</code>. Be sure to replace "password" with your own password.
 
-1. Start the server. I use [Nodemon](https://www.npmjs.com/package/nodemon), and if you do too, type the command <code>nodemon</code> to start the server. It will run on [PORT 4200](http://localhost:4200/api/v1/goblins). If you don't use Nodemon, then the command <code>node server.js</code> will start your server.
+1. Start the server. I use [Nodemon](https://www.npmjs.com/package/nodemon), and if you do too, type the command <code>nodemon</code> in the terminal/command line/etc to start the server. It will run on [PORT 4200](http://localhost:4200/api/v1/goblins). If you don't use Nodemon, then use the command <code>node server.js</code> to start your server.
 
 1. You may run the command <code>npm test</code> to run the tests, which will also populate the database with two goblins. However, if you run this command again, it will reset the database, so any other goblins that you created will be lost.
 
@@ -46,7 +46,9 @@ If you would like to try out this project locally, the first steps will be to cl
 1. Clone this client repo <code>git clone https://github.com/franco-ortega/demo-04-client-goblins.git
    </code>
 
-1. Set up a client-side .env file with this pointing to your localhost server that is now running: <code>http://localhost:4200/api/v1/goblins</code>
+1. Create a client-side <code>.env</code> file with this line of code: <code>REACT_APP_LOCALHOST_URL=http://localhost:4200/api/v1/goblins</code>. React apps require the <code>REACT_APP\_</code> prefix prepended to variable names in <code>.env</code> files.
+
+1. Replace the first line of code at the top of the findGoblin.js and insertGoblin.js files in the <code>./src/services</code> folder with this line of code: <code>const LOCALHOST_URL = process.env.REACT_APP_LOCALHOST_URL;</code>. Then, on line 5 of each of these files, replace <code>API_URL</code> with <code>LOCALHOST_URL</code>.
 
 1. Install dependencies <code>npm i</code>
 
