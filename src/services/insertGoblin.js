@@ -1,5 +1,5 @@
-const API_URL = process.env.REACT_APP_API_URL;
-// const LOCALHOST_URL = process.env.REACT_APP_LOCALHOST_URL;
+const API_URL = process.env.REACT_APP_LOCALHOST_URL
+               || process.env.REACT_APP_API_URL;
 
 export const insertGoblin = async(goblin) => {
   return await fetch(API_URL, {

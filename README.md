@@ -48,7 +48,7 @@ If you would like to try out this project locally, the first steps will be to cl
 
 1. Create a client-side <code>.env</code> file with this line of code: <code>REACT_APP_LOCALHOST_URL=http://localhost:4200/api/v1/goblins</code>. React apps require the <code>REACT_APP\_</code> prefix prepended to variable names in <code>.env</code> files.
 
-1. Replace the first line of code at the top of the findGoblin.js and insertGoblin.js files in the <code>./src/services</code> folder with this line of code: <code>const LOCALHOST_URL = process.env.REACT_APP_LOCALHOST_URL;</code>. Then, on line 5 of each of these files, replace <code>API_URL</code> with <code>LOCALHOST_URL</code>.
+1. Replace the first line of code at the top of the <code>findGoblin.js</code> and <code>insertGoblin.js</code> files in the <code>./src/services</code> folder with this line of code: <code>const LOCALHOST_URL = process.env.REACT_APP_LOCALHOST_URL;</code>. Then, on line 5 of each of these files, replace <code>API_URL</code> with <code>LOCALHOST_URL</code>.
 
 1. Install dependencies <code>npm i</code>
 
