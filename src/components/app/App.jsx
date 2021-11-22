@@ -3,6 +3,7 @@ import { findGoblins } from '../../services/findGoblins';
 // import { updateGoblin } from '../../services/updateGoblin';
 import Goblin from '../goblins/Goblin';
 import GoblinForm from '../goblins/GoblinForm';
+import GoblinUpdate from '../goblins/GoblinUpdate';
 import './App.css';
 
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
       <main>
         {goblinsToDisplay}
       </main>
+      {goblins.length &&
+        <GoblinUpdate {...goblins[0]} />
+      }
     </>
   );
 };

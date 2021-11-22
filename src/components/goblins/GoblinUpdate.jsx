@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react/cjs/react.development';
+import { updateGoblin } from '../../services/updateGoblin';
 
-const GoblinUpdate = ({ goblinName, hitPoints, armorClass, items }) => {
+const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items }) => {
   const [name, setName] = useState(goblinName);
   const [hp, setHP] = useState(hitPoints);
   const [ac, setAC] = useState(armorClass);
   const [itemList, setItemList] = useState(items);
 
-  console.log(setName);
-  console.log(setHP);
-  console.log(setAC);
-  console.log(setItemList);
+  const onItemsChange = ({ target }) => {
+    const splitItems = target.value.split(',');
+    setItemList(splitItems);
+  };
+
+  const itemsToDisplay = itemList.reduce((acc, cur) => {
+    if(itemList.length === items.length) return acc + ', ' + cur;
+    return acc + ',' + cur;
+  });
+
+  const onUpdateClick = (e) => {
+    e.preventDefault();
+
+    updateGoblin(id, {
+      goblinName: name,
+      hitPoints: hp,
+      armorClass: ac,
+      items: itemList
+    });
+  };
 
   return (
     <div>
@@ -23,6 +39,7 @@ const GoblinUpdate = ({ goblinName, hitPoints, armorClass, items }) => {
             placeholder="name"
             type="text"
             value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </label>
         <label htmlFor="hit points">Hit Points
@@ -31,6 +48,7 @@ const GoblinUpdate = ({ goblinName, hitPoints, armorClass, items }) => {
             placeholder="Hit Points"
             type="number"
             value={hp}
+            onChange={(e) => setHP(e.target.value)}
           />
         </label>
         <label htmlFor="armor class"> Armor Class
@@ -39,6 +57,7 @@ const GoblinUpdate = ({ goblinName, hitPoints, armorClass, items }) => {
             placeholder="armor class"
             type="number"
             value={ac}
+            onChange={(e) => setAC(e.target.value)}
           />
         </label>
         <label htmlFor="items">Items
@@ -46,9 +65,12 @@ const GoblinUpdate = ({ goblinName, hitPoints, armorClass, items }) => {
             id="items"
             placeholder="Items"
             type="text"
-            value={itemList.reduce((acc, cur) => acc + cur)}
+            value={itemsToDisplay}
+            onChange={onItemsChange}
           />
         </label>
+
+        <button onClick={onUpdateClick}>Update</button>
       </form>
       
     </div>
@@ -56,10 +78,11 @@ const GoblinUpdate = ({ goblinName, hitPoints, armorClass, items }) => {
 };
 
 GoblinUpdate.propTypes = {
+  id: PropTypes.string.isRequired,
   goblinName: PropTypes.string.isRequired,
   hitPoints: PropTypes.number.isRequired,
   armorClass: PropTypes.number.isRequired,
-  items: PropTypes.shape([]).isRequired
+  items: PropTypes.array.isRequired
 };
 
 export default GoblinUpdate;
