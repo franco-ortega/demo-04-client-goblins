@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { updateGoblin } from '../../services/updateGoblin';
 
-const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items }) => {
+const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
+  setGoblinUpdate }) => {
   const [name, setName] = useState(goblinName);
   const [hp, setHP] = useState(hitPoints);
   const [ac, setAC] = useState(armorClass);
@@ -27,6 +28,8 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items }) => {
       armorClass: ac,
       items: itemList
     });
+
+    setGoblinUpdate(prevState => !prevState);
   };
 
   return (
@@ -82,7 +85,8 @@ GoblinUpdate.propTypes = {
   goblinName: PropTypes.string.isRequired,
   hitPoints: PropTypes.number.isRequired,
   armorClass: PropTypes.number.isRequired,
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  setGoblinUpdate: PropTypes.func.isRequired
 };
 
 export default GoblinUpdate;

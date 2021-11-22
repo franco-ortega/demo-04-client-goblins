@@ -8,21 +8,12 @@ import './App.css';
 
 const App = () => {
   const [goblins, setGoblins] = useState([]);
+  const [goblinUpdate, setGoblinUpdate] = useState(false);
 
   useEffect(() => {
     findGoblins()
       .then(res => setGoblins(res));
-
-    // updateGoblin(1, {
-    //   goblinName: 'Taru',
-    //   hitPoints: 22,
-    //   armorClass: 8,
-    //   items: [
-    //     'apple pie',
-    //     'big watch on chain'
-    //   ]
-    // }).then(goblin => console.log(goblin));
-  }, []);
+  }, [goblinUpdate]);
 
   console.log(goblins);
 
@@ -38,7 +29,7 @@ const App = () => {
         {goblinsToDisplay}
       </main>
       {goblins.length &&
-        <GoblinUpdate {...goblins[0]} />
+        <GoblinUpdate {...goblins[0]} setGoblinUpdate={setGoblinUpdate} />
       }
     </>
   );
