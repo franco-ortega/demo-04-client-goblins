@@ -17,7 +17,7 @@ const GoblinSelect = ({
     value="none">Pick a goblin</option>);
 
   return (
-    <form onSubmit={onGoblinSubmit}>Update a Goblin
+    <form onSubmit={onGoblinSubmit}><h3>Update a Goblin</h3>
       <select name="" id="" onChange={onGoblinToUpdateSelect}>
         {goblinOptions}
       </select>

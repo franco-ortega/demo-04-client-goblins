@@ -36,23 +36,27 @@ const App = () => {
     <>
       <h1>Goblins are coming...</h1>
       <GoblinForm setGoblins={setGoblins} />
+      
+      <footer>
+        {goblins.length && !goblinToUpdate &&
+          <GoblinSelect
+            goblins={goblins}
+            onGoblinSubmit={onGoblinSubmit}
+            onGoblinToUpdateSelect={onGoblinToUpdateSelect}
+          />
+        }
+        {goblinToUpdate &&
+          <GoblinUpdate
+            {...goblinToUpdate}
+            setGoblins={setGoblins}
+            setGoblinToUpdate={setGoblinToUpdate}
+          />
+        }
+      </footer>
+
       <main>
         {goblinsToDisplay}
       </main>
-      {goblins.length && !goblinToUpdate &&
-        <GoblinSelect
-          goblins={goblins}
-          onGoblinSubmit={onGoblinSubmit}
-          onGoblinToUpdateSelect={onGoblinToUpdateSelect}
-        />
-      }
-      {goblinToUpdate &&
-        <GoblinUpdate
-          {...goblinToUpdate}
-          setGoblins={setGoblins}
-          setGoblinToUpdate={setGoblinToUpdate}
-        />
-      }
     </>
   );
 };

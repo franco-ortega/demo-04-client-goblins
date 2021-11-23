@@ -36,8 +36,8 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
 
   return (
     <div>
-      <h3>Update Your Goblin</h3>
       <form onSubmit={onUpdateSubmit}>
+        <h3>Update a Goblin</h3>
         <label htmlFor="name">Name
           <input
             required
@@ -67,7 +67,7 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
           />
         </label>
         <label htmlFor="items">Items
-          <input
+          <textarea
             id="items"
             placeholder="Items"
             type="text"
