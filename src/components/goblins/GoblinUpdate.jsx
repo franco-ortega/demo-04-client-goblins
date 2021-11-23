@@ -4,7 +4,7 @@ import { updateGoblin } from '../../services/updateGoblin';
 import { findGoblins } from '../../services/findGoblins';
 
 const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
-  setGoblins }) => {
+  setGoblins, setGoblinToUpdate }) => {
   const [name, setName] = useState(goblinName);
   const [hp, setHP] = useState(hitPoints);
   const [ac, setAC] = useState(armorClass);
@@ -30,6 +30,8 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
     
     findGoblins()
       .then(res => setGoblins(res));
+
+    setGoblinToUpdate(null);
   };
 
   return (
@@ -85,7 +87,8 @@ GoblinUpdate.propTypes = {
   hitPoints: PropTypes.number.isRequired,
   armorClass: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
-  setGoblins: PropTypes.func.isRequired
+  setGoblins: PropTypes.func.isRequired,
+  setGoblinToUpdate: PropTypes.func.isRequired
 };
 
 export default GoblinUpdate;
