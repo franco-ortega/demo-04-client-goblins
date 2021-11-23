@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { findGoblins } from '../../services/findGoblins';
 import Goblin from '../goblins/Goblin';
 import GoblinForm from '../goblins/GoblinForm';
+import GoblinSelect from '../goblins/GoblinSelect';
 import GoblinUpdate from '../goblins/GoblinUpdate';
 import './App.css';
 
@@ -17,13 +18,10 @@ const App = () => {
 
   const onGoblinToUpdateSelect = ({ target }) => {
     setSelectedGoblin(target.value);
-    
   };
 
   const onGoblinSubmit = (e) => {
     e.preventDefault();
-    console.log('goblin submit clicked');
-    console.log(selectedGoblin);
 
     setGoblinToUpdate(goblins.find(goblin => {
       return goblin.id === selectedGoblin;
@@ -34,16 +32,6 @@ const App = () => {
     <Goblin key={goblin.id} goblin={goblin} />
   ));
 
-  const goblinOptions = goblins.map(goblin => (
-    <option
-      key={goblin.id}
-      value={goblin.id}>{goblin.goblinName}</option>
-  ));
-
-  goblinOptions.unshift(<option
-    key="0"
-    value="none">Pick a goblin</option>);
-
   return (
     <>
       <h1>Goblins are coming...</h1>
@@ -52,12 +40,11 @@ const App = () => {
         {goblinsToDisplay}
       </main>
       {goblins.length && !goblinToUpdate &&
-        <form onSubmit={onGoblinSubmit}>Update a Goblin
-          <select name="" id="" onChange={onGoblinToUpdateSelect}>
-            {goblinOptions}
-          </select>
-          <button>Update</button>
-        </form>
+        <GoblinSelect
+          goblins={goblins}
+          onGoblinSubmit={onGoblinSubmit}
+          onGoblinToUpdateSelect={onGoblinToUpdateSelect}
+        />
       }
       {goblinToUpdate &&
         <GoblinUpdate
