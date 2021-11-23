@@ -4,11 +4,9 @@ import Goblin from '../goblins/Goblin';
 import GoblinForm from '../goblins/GoblinForm';
 import GoblinSelect from '../goblins/GoblinSelect';
 import GoblinUpdate from '../goblins/GoblinUpdate';
-import './App.css';
 
 const App = () => {
   const [goblins, setGoblins] = useState([]);
-  const [selectedGoblin, setSelectedGoblin] = useState(null);
   const [goblinToUpdate, setGoblinToUpdate] = useState(null);
 
   useEffect(() => {
@@ -16,19 +14,7 @@ const App = () => {
       .then(res => setGoblins(res));
   }, []);
 
-  const onGoblinToUpdateSelect = ({ target }) => {
-    setSelectedGoblin(target.value);
-  };
-
-  const onGoblinSubmit = (e) => {
-    e.preventDefault();
-
-    setGoblinToUpdate(goblins.find(goblin => {
-      return goblin.id === selectedGoblin;
-    }));
-  };
-
-  const goblinsToDisplay = goblins.map(goblin => (
+  const goblinsList = goblins.map(goblin => (
     <Goblin key={goblin.id} goblin={goblin} />
   ));
 
@@ -38,11 +24,10 @@ const App = () => {
       <GoblinForm setGoblins={setGoblins} />
       
       <footer>
-        {goblins.length && !goblinToUpdate &&
+        {goblins.length > 0 && !goblinToUpdate &&
           <GoblinSelect
             goblins={goblins}
-            onGoblinSubmit={onGoblinSubmit}
-            onGoblinToUpdateSelect={onGoblinToUpdateSelect}
+            setGoblinToUpdate={setGoblinToUpdate}
           />
         }
         {goblinToUpdate &&
@@ -55,7 +40,7 @@ const App = () => {
       </footer>
 
       <main>
-        {goblinsToDisplay}
+        {goblinsList}
       </main>
     </>
   );

@@ -97,18 +97,17 @@ textarea {
   height: 10rem;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 650px) {
   form {
     float: left;
-    margin: 2vw;
+    margin: 1rem;
     max-width: fit-content;
     gap: 1vw;
   }
 
   main {
     justify-content: flex-start;
-    gap: 1vw;
-    /* width: 50%; */
+    gap: 1rem;
     margin: auto;
   }
 

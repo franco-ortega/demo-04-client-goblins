@@ -57,7 +57,7 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
             onChange={(e) => setHP(e.target.value)}
           />
         </label>
-        <label htmlFor="armor class"> Armor Class
+        <label htmlFor="armor class">Armor Class
           <input
             id="armor class"
             placeholder="armor class"

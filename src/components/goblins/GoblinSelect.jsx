@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const GoblinSelect = ({
   goblins,
-  onGoblinSubmit,
-  onGoblinToUpdateSelect
+  setGoblinToUpdate
 }) => {
+  const [selectedGoblin, setSelectedGoblin] = useState(null);
+
+  const onGoblinSubmit = (e) => {
+    e.preventDefault();
+
+    setGoblinToUpdate(goblins.find(goblin => {
+      return goblin.id === selectedGoblin;
+    }));
+  };
+
   const goblinOptions = goblins.map(goblin => (
     <option
       key={goblin.id}
-      value={goblin.id}>{goblin.goblinName}</option>
+      value={goblin.id}
+    >{goblin.goblinName}</option>
   ));
 
   goblinOptions.unshift(<option
     key="0"
-    value="none">Pick a goblin</option>);
+    value="">Pick a goblin</option>);
 
   return (
-    <form onSubmit={onGoblinSubmit}><h3>Update a Goblin</h3>
-      <select name="" id="" onChange={onGoblinToUpdateSelect}>
+    <form htmlFor="update"
+      onSubmit={onGoblinSubmit}><h3>Update a Goblin</h3>
+      <select name="update" id="update"
+        onChange={({ target }) => setSelectedGoblin(target.value)}>
         {goblinOptions}
       </select>
       <button>Update</button>
@@ -28,8 +40,7 @@ const GoblinSelect = ({
 
 GoblinSelect.propTypes = {
   goblins: PropTypes.array.isRequired,
-  onGoblinSubmit: PropTypes.func.isRequired,
-  onGoblinToUpdateSelect: PropTypes.func.isRequired
+  setGoblinToUpdate: PropTypes.func.isRequired
 };
 
 export default GoblinSelect;
