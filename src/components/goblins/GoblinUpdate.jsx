@@ -11,26 +11,25 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
   const [itemList, setItemList] = useState('');
 
   useEffect(() => {
-    setItemList(items.reduce((acc, cur) => acc + ', ' + cur));
+    if(items.length) setItemList(items.reduce((acc, cur) => acc + ', ' + cur));
   }, []);
-
+  
   const onItemsChange = ({ target }) => {
     setItemList(target.value);
   };
 
-  const onUpdateSubmit = (e) => {
+  const onUpdateSubmit = async(e) => {
     e.preventDefault();
 
-    updateGoblin(id, {
+    await updateGoblin(id, {
       goblinName: name,
       hitPoints: hp,
       armorClass: ac,
-      items: itemList.split(',')
-    }).then(res => {
-      console.log(res);
-      findGoblins()
-        .then(res => setGoblins(res));
+      items: itemList.split(', ')
     });
+    
+    findGoblins()
+      .then(res => setGoblins(res));
   };
 
   return (

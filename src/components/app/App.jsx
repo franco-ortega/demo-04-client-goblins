@@ -13,8 +13,6 @@ const App = () => {
     findGoblins()
       .then(res => setGoblins(res));
   }, []);
-    
-  console.log(goblins);
 
   const goblinsToDisplay = goblins.map(goblin => (
     <Goblin key={goblin.id} goblin={goblin} />
@@ -28,7 +26,7 @@ const App = () => {
         {goblinsToDisplay}
       </main>
       {goblins.length &&
-        <GoblinUpdate {...goblins[2]} setGoblins={setGoblins} />
+        <GoblinUpdate {...goblins[0]} setGoblins={setGoblins} />
       }
     </>
   );
