@@ -1,43 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { updateGoblin } from '../../services/updateGoblin';
+import { findGoblins } from '../../services/findGoblins';
 
 const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
-  setGoblinUpdate }) => {
+  setGoblins }) => {
   const [name, setName] = useState(goblinName);
   const [hp, setHP] = useState(hitPoints);
   const [ac, setAC] = useState(armorClass);
-  const [itemList, setItemList] = useState(items);
+  const [itemList, setItemList] = useState('');
+
+  useEffect(() => {
+    setItemList(items.reduce((acc, cur) => acc + ', ' + cur));
+  }, []);
 
   const onItemsChange = ({ target }) => {
-    const splitItems = target.value.split(',');
-    setItemList(splitItems);
+    setItemList(target.value);
   };
 
-  const itemsToDisplay = itemList.reduce((acc, cur) => {
-    if(itemList.length === items.length) return acc + ', ' + cur;
-    return acc + ',' + cur;
-  });
-
-  const onUpdateClick = (e) => {
+  const onUpdateSubmit = (e) => {
     e.preventDefault();
 
     updateGoblin(id, {
       goblinName: name,
       hitPoints: hp,
       armorClass: ac,
-      items: itemList
+      items: itemList.split(',')
+    }).then(res => {
+      console.log(res);
+      findGoblins()
+        .then(res => setGoblins(res));
     });
-
-    setGoblinUpdate(prevState => !prevState);
   };
 
   return (
     <div>
       <h3>Update Your Goblin</h3>
-      <form>
+      <form onSubmit={onUpdateSubmit}>
         <label htmlFor="name">Name
           <input
+            required
             id="name"
             placeholder="name"
             type="text"
@@ -68,14 +70,12 @@ const GoblinUpdate = ({ id, goblinName, hitPoints, armorClass, items,
             id="items"
             placeholder="Items"
             type="text"
-            value={itemsToDisplay}
+            value={itemList}
             onChange={onItemsChange}
           />
         </label>
-
-        <button onClick={onUpdateClick}>Update</button>
+        <button>Update</button>
       </form>
-      
     </div>
   );
 };
@@ -86,7 +86,7 @@ GoblinUpdate.propTypes = {
   hitPoints: PropTypes.number.isRequired,
   armorClass: PropTypes.number.isRequired,
   items: PropTypes.array.isRequired,
-  setGoblinUpdate: PropTypes.func.isRequired
+  setGoblins: PropTypes.func.isRequired
 };
 
 export default GoblinUpdate;

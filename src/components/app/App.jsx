@@ -8,13 +8,12 @@ import './App.css';
 
 const App = () => {
   const [goblins, setGoblins] = useState([]);
-  const [goblinUpdate, setGoblinUpdate] = useState(false);
 
   useEffect(() => {
     findGoblins()
       .then(res => setGoblins(res));
-  }, [goblinUpdate]);
-
+  }, []);
+    
   console.log(goblins);
 
   const goblinsToDisplay = goblins.map(goblin => (
@@ -29,7 +28,7 @@ const App = () => {
         {goblinsToDisplay}
       </main>
       {goblins.length &&
-        <GoblinUpdate {...goblins[0]} setGoblinUpdate={setGoblinUpdate} />
+        <GoblinUpdate {...goblins[2]} setGoblins={setGoblins} />
       }
     </>
   );
